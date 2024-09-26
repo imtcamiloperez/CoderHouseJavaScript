@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Temperaturas</title>
     <style>
+        /* Estilos previos */
+
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -56,12 +58,51 @@
             padding: 10px;
             text-align: left;
         }
+
+        /* Estilos para el modal */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
     <h1>Registro de Temperaturas</h1>
     <div>
+        <!-- Formulario existente -->
         <div class="form-group">
             <label for="ubicacion">Ubicación:</label>
             <input type="text" id="ubicacion">
@@ -89,6 +130,8 @@
         <button onclick="registrarTemperatura()">Registrar</button>
         <button onclick="mostrarUltimosRegistros()">Mostrar Últimos 3 Registros</button>
         <button onclick="mostrarTodosLosRegistros()">Mostrar Todos los Registros</button>
+        <!-- Botón para abrir el modal -->
+        <button onclick="abrirModal()">Estadísticas</button>
     </div>
     <table>
         <thead>
@@ -104,6 +147,20 @@
         <tbody id="registros">
         </tbody>
     </table>
+
+    <!-- El modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <h2>Estadísticas</h2>
+            <div id="estadisticas">
+                <p>Temperatura Interna - Promedio: <span id="promedioTempInterna">0</span> °C, Máximo: <span id="maxTempInterna">0</span> °C, Mínimo: <span id="minTempInterna">0</span> °C</p>
+                <p>Temperatura Externa - Promedio: <span id="promedioTempExterna">0</span> °C, Máximo: <span id="maxTempExterna">0</span> °C, Mínimo: <span id="minTempExterna">0</span> °C</p>
+                <p>Humedad - Promedio: <span id="promedioHumedad">0</span> %, Máximo: <span id="maxHumedad">0</span> %, Mínimo: <span id="minHumedad">0</span> %</p>
+            </div>
+        </div>
+    </div>
+
     <script src="../js/temperaturaHumedad.js"></script>
 </body>
 
